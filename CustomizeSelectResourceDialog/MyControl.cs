@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace CustomizeSelectResourceDialog
 {
+    [Designer(typeof(MyControlDesigner))]
     public partial class MyControl : UserControl
     {
         public MyControl()
