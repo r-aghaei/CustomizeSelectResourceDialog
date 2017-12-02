@@ -28,12 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.myControl1 = new CustomizeSelectResourceDialog.MyControl();
+            this.SuspendLayout();
+            // 
+            // myControl1
+            // 
+            this.myControl1.BackgroundImage = global::CustomizeSelectResourceDialog.Properties.Resources.ar;
+            this.myControl1.Location = new System.Drawing.Point(12, 12);
+            this.myControl1.Name = "myControl1";
+            this.myControl1.Size = new System.Drawing.Size(152, 154);
+            this.myControl1.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.myControl1);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private MyControl myControl1;
     }
 }
 

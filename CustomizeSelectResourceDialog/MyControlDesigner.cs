@@ -16,7 +16,7 @@ namespace CustomizeSelectResourceDialog
         protected override void OnCreateHandle()
         {
             base.OnCreateHandle();
-            var property = TypeDescriptor.GetProperties(this.Control)["SomeProperty"];
+            var property = TypeDescriptor.GetProperties(this.Control)["BackgroundImage"];
             var resourceEditorSwitch = property.GetEditor(typeof(UITypeEditor)) as UITypeEditor;
             var editorToUseField = resourceEditorSwitch.GetType().GetProperty("EditorToUse",
                 BindingFlags.NonPublic | BindingFlags.Instance);
