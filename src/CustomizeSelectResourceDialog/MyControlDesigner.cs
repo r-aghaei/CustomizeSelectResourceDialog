@@ -43,7 +43,8 @@ namespace CustomizeSelectResourceDialog
 
             List<string> list = new List<string>();
             var textBox = new TextBox() { Dock = DockStyle.Fill, Margin = resourceList.Margin };
-            Action<string> applyFilter = (s) => {
+            Action<string> applyFilter = (s) =>
+            {
                 if (string.IsNullOrEmpty(s))
                 {
                     resourceList.BeginUpdate();
@@ -60,10 +61,16 @@ namespace CustomizeSelectResourceDialog
                     resourceList.Items.AddRange(list2.ToArray());
                     resourceList.EndUpdate();
                 }
+                if (resourceList.Items.Count > 1)
+                    resourceList.SelectedIndex = 1;
+                else
+                    resourceList.SelectedIndex = 0;
             };
             var resxCombo = GetControl<ComboBox>(f, "resxCombo");
-            resxCombo.SelectedValueChanged += (s, e) => {
-                resxCombo.BeginInvoke(new Action(() => {
+            resxCombo.SelectedValueChanged += (s, e) =>
+            {
+                resxCombo.BeginInvoke(new Action(() =>
+                {
                     if (resourceList.Items.Count > 0)
                     {
                         list = resourceList.Items.Cast<string>().ToList();
@@ -72,9 +79,25 @@ namespace CustomizeSelectResourceDialog
                 }));
             };
             textBox.TextChanged += (s, e) => applyFilter(textBox.Text);
+            textBox.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Up)
+                {
+                    e.Handled = true;
+                    if (resourceList.SelectedIndex >= 1)
+                        resourceList.SelectedIndex--;
+                }
+                if (e.KeyCode == Keys.Down)
+                {
+                    e.Handled = true;
+                    if (resourceList.SelectedIndex < resourceList.Items.Count - 1)
+                        resourceList.SelectedIndex++;
+                }
+            };
             tableLayoutPanel.Controls.Add(textBox, 0, 0);
 
-            resourceList.EnabledChanged += (s, e) => {
+            resourceList.EnabledChanged += (s, e) =>
+            {
                 textBox.Enabled = resourceList.Enabled;
 
             };
